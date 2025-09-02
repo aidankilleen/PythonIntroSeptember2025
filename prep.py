@@ -1,7 +1,7 @@
-import random
+import pyfiglet as pf
 
-
-print(f"hello {random.randint(1, 10)}")
+ascii_banner = pf.figlet_format("Hello World")
+print(ascii_banner)
 
 
 
