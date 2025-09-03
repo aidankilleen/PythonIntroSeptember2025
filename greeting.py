@@ -10,6 +10,10 @@ def greet(name="", times=1):
     - 'name': name to greet - default = ""
     - 'times': how many times to print the greeting 1 by default
     """
+
+    if name == "":
+        raise ValueError("Name can't be blank")
+    
     for i in range(times):
         print (f"Hello {name}")
 

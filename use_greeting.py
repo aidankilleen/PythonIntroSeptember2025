@@ -1,7 +1,13 @@
 # use_greeting.py
 
 import greeting as gt
-gt.greet("Alice", times=10)
+
+try:
+    gt.greet("", times=10)
+except:
+    gt.greet("ok")
+
+    
 
 """ import greeting
 greeting.greet("Bob")
