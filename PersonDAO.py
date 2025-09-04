@@ -13,7 +13,6 @@ class PersonDAO():
     def close(self):
         self.conn.close()
 
-
     def get_all(self):
         sql = "SELECT * FROM users"
         cursor = self.conn.cursor()
@@ -36,6 +35,7 @@ class PersonDAO():
         sql = f"DELETE FROM users WHERE id = {id}"
         cursor = self.conn.cursor()
         res = cursor.execute(sql)
+        self.conn.commit()
 
     def add(self, person: Person):
             sql = "INSERT INTO users (name, email, active) VALUES (?, ?, ?)"
