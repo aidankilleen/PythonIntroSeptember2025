@@ -37,11 +37,21 @@ class PersonDAO():
         cursor = self.conn.cursor()
         res = cursor.execute(sql)
 
-    def add(self, person):
-        pass
+    def add(self, person: Person):
+            sql = "INSERT INTO users (name, email, active) VALUES (?, ?, ?)"
+            cursor = self.conn.cursor()
+            cursor.execute(sql, (person.name, person.email, int(person.active)))
+            self.conn.commit()
+            # fetch the auto-generated id and update the object
+            person.id = cursor.lastrowid
+            return person
 
-    def update(self, person):
-        pass
+    def update(self, person: Person):
+        sql = "UPDATE users SET name = ?, email = ?, active = ? WHERE id = ?"
+        cursor = self.conn.cursor()
+        cursor.execute(sql, (person.name, person.email, int(person.active), person.id))
+        self.conn.commit()
+        return cursor.rowcount > 0  # returns True if a row was updated
 
 if __name__ == "__main__":
     pd = PersonDAO()
