@@ -86,7 +86,7 @@ domain = "A" + domain[1:]
 print (domain)
 
 
-
+print ("*" * 25)
 
 
 
