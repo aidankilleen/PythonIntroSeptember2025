@@ -6,6 +6,9 @@ import sqlite3
 from Person import Person
 
 class PersonDAO():
+    """Object for reading and writing person objects
+NB: please call the close() method when finished
+"""
 
     def __init__(self):
         self.conn = sqlite3.connect("./users.db")
@@ -38,13 +41,13 @@ class PersonDAO():
         self.conn.commit()
 
     def add(self, person: Person):
-            sql = "INSERT INTO users (name, email, active) VALUES (?, ?, ?)"
-            cursor = self.conn.cursor()
-            cursor.execute(sql, (person.name, person.email, int(person.active)))
-            self.conn.commit()
-            # fetch the auto-generated id and update the object
-            person.id = cursor.lastrowid
-            return person
+        sql = "INSERT INTO users (name, email, active) VALUES (?, ?, ?)"
+        cursor = self.conn.cursor()
+        cursor.execute(sql, (person.name, person.email, int(person.active)))
+        self.conn.commit()
+        # fetch the auto-generated id and update the object
+        person.id = cursor.lastrowid
+        return person
 
     def update(self, person: Person):
         sql = "UPDATE users SET name = ?, email = ?, active = ? WHERE id = ?"
