@@ -31,6 +31,7 @@ with open("testfile.txt", "r") as f:
 
     # instead of calling readlines
     # we should iterate, particularly if we have a large file
+    print (f)
     for line in f:
         print (line.strip())
 
